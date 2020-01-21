@@ -19,7 +19,8 @@
             case"31":
             case"41":
             case"51":
-                return 1;
+                //echo "0";
+                return 0;
             case "2":
             case "3":
             case "4":
@@ -35,9 +36,11 @@
             case "52":
             case "53":
             case "54":
-                return 2;
+                //echo "1";
+                return 1;
             default:
-                return 3;
+                //echo "2";
+                return 2;
         }
     }   
 
@@ -48,13 +51,13 @@
             $base = 'минут';
             switch (suffixGroup($value)){
                 case 0:
-                    $suffix = '';
-                    break;
-                case 1:
                     $suffix = 'а';
                     break;
-                case 2:
+                case 1:
                     $suffix = 'ы';
+                    break;
+                case 2:
+                    $suffix = '';
                     break;
             }
         }
@@ -62,16 +65,17 @@
             $base = 'час';
             switch (suffixGroup($value)){
                 case 0:
-                    $suffix = 'ов';
-                    break;
-                case 1:
                     $suffix = '';
                     break;
-                case 2:
+                case 1:
                     $suffix = 'а';
+                    break;
+                case 2:
+                    $suffix = 'ов';
                     break;
             }
         }
+        //echo $base . $suffix;
         return $value." ".$base.$suffix;
     }
 
