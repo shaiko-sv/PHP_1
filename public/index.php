@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<h1>ДЗ Урок 6</h1>
+<h1>ДЗ Урок 4</h1>
 <p>Задание с галерей</p>
 <br/>
 
