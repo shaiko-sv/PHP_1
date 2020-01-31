@@ -37,6 +37,6 @@
     }    
     
     //session_start();
-    header("Location: ../public/homework1.php?num1=".$num1."&num2=".$num2."&action=".$action."&result=".$result); //редирект на страницу, где хотите отобразить сообщение
+    header("Location: ../public/homework2.php?num1=".$num1."&num2=".$num2."&action=".$action."&result=".$result); //редирект на страницу, где хотите отобразить сообщение
     //exit;
 ?>
