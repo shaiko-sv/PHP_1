@@ -9,7 +9,7 @@ Vue.component('cart', {
     },
     methods: {
         addProduct(product){
-            this.$parent.getJson(`${API}/addToBasket.json`)
+            this.$parent.getJson(`../../engine/db_request.php?id=1`)
                 .then(data => {
                     console.log(data);
                     if (data.result) {
@@ -33,12 +33,13 @@ Vue.component('cart', {
         },
     },
     mounted() {
-        this.$parent.getJson(`${API + this.cartUrl}`)
+        this.$parent.getJson(`../engine/ajaxfile.php?table=cartItems`)
             .then(data => {
-                for(let el of data.contents){
+                console.log(data);
+                for(let el of data){
                     this.cartItems.push(el);
                 }
-            });
+            })
     },
     template: `<div>
                     <button
@@ -74,3 +75,8 @@ Vue.component('cart-item', {
                     </div>
                 </div>`,
 });
+
+/*
+select cartItems.id_product, products.product_name, products.price, cartItems.product_quantity from cartItems
+
+*/
