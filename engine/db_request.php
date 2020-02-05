@@ -1,7 +1,6 @@
 <?php
 require_once "../config/config.php";
 
-print_r($_GET);
 if($_GET['id']){
     $idProduct = (int)($_GET['id']);
 }
@@ -15,14 +14,22 @@ $sql = "SELECT * FROM cartItems WHERE id_cart=".$idCart." and id_product=".$idPr
         if(!$result){
             die(mysqli_error($con));
         }
-        print('{"result": 1}');
+        $response = [];
+        $row = (object) array('result' => '1');
+        $response[] = $row;
+        echo json_encode($response);
+        exit;
     } else {
     $sql = "UPDATE cartItems SET quantity = quantity + 1 WHERE id_cart=".$idCart." AND id_product=".$idProduct;
     $result = mysqli_query($con, $sql);
         if(!$result){
             die(mysqli_error($con));
         }
-        print('{"result": 1}');
+        $response = [];
+        $row = (object) array('result' => '1');
+        $response[] = $row;
+        echo json_encode($response);
+        exit;
     }
 function product_new($con, $name, $description, $src, $small_src, $price){
 
