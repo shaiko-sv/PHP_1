@@ -12,6 +12,7 @@ Vue.component('cart', {
             this.$parent.getJson(`../../engine/db_request.php?id=1`)
                 .then(data => {
                     console.log(data);
+                    console.log(data.result);
                     if (data.result) {
                         let find = this.cartItems.find(el => el.id_product === product.id_product);
                         if (find) {

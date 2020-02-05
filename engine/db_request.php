@@ -17,7 +17,7 @@ $sql = "SELECT * FROM cartItems WHERE id_cart=".$idCart." and id_product=".$idPr
         $response = [];
         $row = (object) array('result' => '1');
         $response[] = $row;
-        echo json_encode($response);
+        echo json_encode($row);
         exit;
     } else {
     $sql = "UPDATE cartItems SET quantity = quantity + 1 WHERE id_cart=".$idCart." AND id_product=".$idProduct;
@@ -28,7 +28,7 @@ $sql = "SELECT * FROM cartItems WHERE id_cart=".$idCart." and id_product=".$idPr
         $response = [];
         $row = (object) array('result' => '1');
         $response[] = $row;
-        echo json_encode($response);
+        echo json_encode($row);
         exit;
     }
 function product_new($con, $name, $description, $src, $small_src, $price){
