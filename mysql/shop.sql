@@ -16,6 +16,62 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `cartItems`
+--
+
+DROP TABLE IF EXISTS `cartItems`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `cartItems` (
+  `id_cart` int(11) NOT NULL,
+  `id_product` int(11) NOT NULL,
+  `quantity` int(11) DEFAULT NULL,
+  `product_added` datetime DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id_cart`,`id_product`),
+  KEY `fk_id_product_idx` (`id_product`),
+  CONSTRAINT `fk_id_cart` FOREIGN KEY (`id_cart`) REFERENCES `carts` (`id_cart`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_id_product` FOREIGN KEY (`id_product`) REFERENCES `products` (`id_product`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `cartItems`
+--
+
+LOCK TABLES `cartItems` WRITE;
+/*!40000 ALTER TABLE `cartItems` DISABLE KEYS */;
+INSERT INTO `cartItems` VALUES (1,1,9,'2020-02-05 18:17:16'),(1,2,2,'2020-02-05 18:17:16'),(1,3,1,'2020-02-05 18:17:16'),(1,4,2,'2020-02-05 18:17:16');
+/*!40000 ALTER TABLE `cartItems` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `carts`
+--
+
+DROP TABLE IF EXISTS `carts`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `carts` (
+  `id_cart` int(11) NOT NULL AUTO_INCREMENT,
+  `id_user` int(11) NOT NULL,
+  `cart_created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id_cart`),
+  KEY `id_user_idx` (`id_user`),
+  CONSTRAINT `id_user` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `carts`
+--
+
+LOCK TABLES `carts` WRITE;
+/*!40000 ALTER TABLE `carts` DISABLE KEYS */;
+INSERT INTO `carts` VALUES (1,1,'2020-02-05 18:15:34'),(2,2,'2020-02-05 18:15:34');
+/*!40000 ALTER TABLE `carts` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `images`
 --
 
@@ -107,11 +163,12 @@ DROP TABLE IF EXISTS `users`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `users` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_user` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(100) NOT NULL,
   `name` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
-  PRIMARY KEY (`id`)
+  `created` datetime DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id_user`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -121,7 +178,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'Sergii','Sergii','foodprofi@gmail.com'),(2,'Olena','Olena','alina270481@gmail.com');
+INSERT INTO `users` VALUES (1,'Sergii','Sergii','foodprofi@gmail.com',NULL),(2,'Olena','Olena','alina270481@gmail.com',NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -134,4 +191,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-02-02 19:41:18
+-- Dump completed on 2020-02-05 20:56:59
